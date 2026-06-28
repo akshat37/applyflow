@@ -1,0 +1,186 @@
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
+
+const seedJobs = [
+  {
+    companyName: "Google",
+    role: "Software Engineer III",
+    jobUrl: "https://careers.google.com",
+    locationType: "Hybrid",
+    locationName: "Mountain View, CA",
+    jobType: "Full-Time",
+    status: "Technical Round",
+    appliedDate: new Date(Date.now() - 15 * 24 * 60 * 60 * 1000),
+    notes: "Great culture fit. System design interview went well.",
+  },
+  {
+    companyName: "Stripe",
+    role: "Frontend Engineer",
+    jobUrl: "https://stripe.com/jobs",
+    locationType: "Remote",
+    locationName: null,
+    jobType: "Full-Time",
+    status: "Offer Received",
+    appliedDate: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000),
+    notes: "Received $145k base offer. Equity vesting over 4 years.",
+  },
+  {
+    companyName: "Airbnb",
+    role: "Senior Software Engineer",
+    jobUrl: "https://careers.airbnb.com",
+    locationType: "Hybrid",
+    locationName: "San Francisco, CA",
+    jobType: "Full-Time",
+    status: "Rejected",
+    appliedDate: new Date(Date.now() - 45 * 24 * 60 * 60 * 1000),
+    notes: "Rejected after final round. Feedback: needed more distributed systems experience.",
+  },
+  {
+    companyName: "Linear",
+    role: "Product Engineer",
+    jobUrl: "https://linear.app/jobs",
+    locationType: "Remote",
+    locationName: null,
+    jobType: "Full-Time",
+    status: "Interview Scheduled",
+    appliedDate: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000),
+    notes: "Interview scheduled for next Thursday at 2pm PT.",
+  },
+  {
+    companyName: "Figma",
+    role: "Software Engineer, Infrastructure",
+    jobUrl: "https://www.figma.com/careers",
+    locationType: "Hybrid",
+    locationName: "New York, NY",
+    jobType: "Full-Time",
+    status: "Applied",
+    appliedDate: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000),
+    notes: null,
+  },
+  {
+    companyName: "Vercel",
+    role: "Developer Experience Engineer",
+    jobUrl: "https://vercel.com/careers",
+    locationType: "Remote",
+    locationName: null,
+    jobType: "Full-Time",
+    status: "HR Round",
+    appliedDate: new Date(Date.now() - 20 * 24 * 60 * 60 * 1000),
+    notes: "HR call scheduled. Role involves writing docs and tooling.",
+  },
+  {
+    companyName: "Notion",
+    role: "ML Engineer",
+    jobUrl: "https://www.notion.so/careers",
+    locationType: "Hybrid",
+    locationName: "San Francisco, CA",
+    jobType: "Full-Time",
+    status: "Assessment",
+    appliedDate: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000),
+    notes: "Take-home assessment due by end of week.",
+  },
+  {
+    companyName: "Shopify",
+    role: "Data Analyst",
+    jobUrl: "https://www.shopify.com/careers",
+    locationType: "Remote",
+    locationName: null,
+    jobType: "Full-Time",
+    status: "No Response",
+    appliedDate: new Date(Date.now() - 60 * 24 * 60 * 60 * 1000),
+    notes: null,
+  },
+  {
+    companyName: "Y Combinator",
+    role: "Software Engineer Intern",
+    jobUrl: "https://www.ycombinator.com/jobs",
+    locationType: "On-site",
+    locationName: "San Francisco, CA",
+    jobType: "Internship",
+    status: "Accepted",
+    appliedDate: new Date(Date.now() - 50 * 24 * 60 * 60 * 1000),
+    notes: "Start date: June 2. Summer internship, 12 weeks.",
+  },
+  {
+    companyName: "Loom",
+    role: "Full Stack Engineer",
+    jobUrl: "https://loom.com/careers",
+    locationType: "Remote",
+    locationName: null,
+    jobType: "Full-Time",
+    status: "Bookmarked",
+    appliedDate: null,
+    notes: "Interesting role. Apply before the deadline.",
+  },
+  {
+    companyName: "Retool",
+    role: "Software Engineer",
+    jobUrl: "https://retool.com/careers",
+    locationType: "On-site",
+    locationName: "San Francisco, CA",
+    jobType: "Full-Time",
+    status: "Final Round",
+    appliedDate: new Date(Date.now() - 25 * 24 * 60 * 60 * 1000),
+    notes: "Final round with CTO. Strong culture match.",
+  },
+  {
+    companyName: "Datadog",
+    role: "Backend Engineer",
+    jobUrl: "https://www.datadoghq.com/careers",
+    locationType: "Hybrid",
+    locationName: "New York, NY",
+    jobType: "Full-Time",
+    status: "Applied",
+    appliedDate: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),
+    notes: null,
+  },
+  {
+    companyName: "Scale AI",
+    role: "Product Manager",
+    jobUrl: "https://scale.com/careers",
+    locationType: "Hybrid",
+    locationName: "San Francisco, CA",
+    jobType: "Full-Time",
+    status: "Withdrawn",
+    appliedDate: new Date(Date.now() - 35 * 24 * 60 * 60 * 1000),
+    notes: "Withdrew after receiving better offer from Stripe.",
+  },
+  {
+    companyName: "PlanetScale",
+    role: "Developer Advocate",
+    jobUrl: "https://planetscale.com/careers",
+    locationType: "Remote",
+    locationName: null,
+    jobType: "Contract",
+    status: "Applied",
+    appliedDate: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000),
+    notes: "6-month contract with possibility of full-time.",
+  },
+  {
+    companyName: "Supabase",
+    role: "Frontend Engineer",
+    jobUrl: "https://supabase.com/careers",
+    locationType: "Remote",
+    locationName: null,
+    jobType: "Part-Time",
+    status: "Interview Scheduled",
+    appliedDate: new Date(Date.now() - 8 * 24 * 60 * 60 * 1000),
+    notes: "Part-time, 20 hrs/week. Good side project opportunity.",
+  },
+];
+
+async function main() {
+  await prisma.job.deleteMany();
+  await prisma.job.createMany({ data: seedJobs });
+  console.log(`Seeded ${seedJobs.length} jobs`);
+}
+
+main()
+  .catch((e) => {
+    console.error(e);
+    process.exit(1);
+  })
+  .finally(async () => {
+    await prisma.$disconnect();
+  });
